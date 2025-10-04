@@ -1,11 +1,28 @@
+/*
+ * Footer.scss
+ *
+ * FOOTER LAYOUT
+ * Pulls in shared variables and styles the site footer using BEM structure.
+ * Matches other surface styles (background, border) for cohesion.
+ */
 @import '../styles/variables';
 
+/*
+ * FOOTER WRAPPER
+ * `margin-top: auto` allows this to act as the sticky-footer counterpart when
+ * used inside the flex column layout provided by `Layout.scss`.
+ */
 .footer {
   background: $card-bg;
   border-top: 1px solid $border;
   margin-top: auto;
 }
 
+/*
+ * INNER CONTAINER
+ * Mobile-first column layout centers content; tablet breakpoint switches to
+ * row layout for left/right distribution of legal text and contact links.
+ */
 .footer__inner {
   max-width: $max-width;
   margin: 0 auto;
@@ -22,6 +39,11 @@
   }
 }
 
+/*
+ * LEGAL TEXT
+ * Small, muted text centered on mobile for symmetry, then left-aligned on
+ * tablets to match typical footer layouts.
+ */
 .footer__legal {
   font-size: $font-size-sm;
   color: $muted;
@@ -32,6 +54,11 @@
   }
 }
 
+/*
+ * CONTACT LINKS
+ * Flex row wraps so email/phone stack on narrow screens. On wider screens the
+ * links align right for a traditional footer layout.
+ */
 .footer__contact {
   display: flex;
   align-items: center;

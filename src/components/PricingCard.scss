@@ -1,5 +1,18 @@
+/*
+ * PricingCard.scss
+ *
+ * PRESENTATIONAL CARD STYLING
+ * Uses design system variables (imported below) to keep color, spacing,
+ * and typography consistent across the app. Structure follows BEM naming:
+ * `.pricing-card` is the block, `__title`, `__price`, etc. are elements.
+ */
 @import '../styles/variables';
 
+/*
+ * CARD CONTAINER
+ * Flex column layout allows content (title, price, features, CTA) to stack
+ * vertically with consistent gaps. Hover shadow provides depth feedback.
+ */
 .pricing-card {
   background: $card-bg;
   padding: $gap-md;
@@ -16,6 +29,11 @@
   }
 }
 
+/*
+ * TYPOGRAPHY ELEMENTS
+ * Title and price use larger font sizes from the type scale to create
+ * hierarchy. Margin reset on title prevents extra spacing inside the card.
+ */
 .pricing-card__title {
   font-size: $font-size-lg;
   font-weight: 700;
@@ -29,6 +47,12 @@
   color: $primary;
 }
 
+/*
+ * FEATURE LIST
+ * Unordered list styled as flex column so each feature line aligns the icon
+ * and text neatly. `flex: 1` lets the list stretch to fill vertical space so
+ * CTA stays pinned to the bottom.
+ */
 .pricing-card__features {
   list-style: none;
   padding: 0;
@@ -39,6 +63,11 @@
   gap: $gap-sm;
 }
 
+/*
+ * FEATURE ROW
+ * Icon + text using small gap. Icon is colored with `$success` to highlight
+ * positive selling points. Line-height keeps multi-line text aligned.
+ */
 .pricing-card__feature {
   display: flex;
   align-items: flex-start;
@@ -57,6 +86,11 @@
   line-height: 1.5;
 }
 
+/*
+ * CTA BUTTON LINK
+ * Styled anchor behaves like a button. `display: block` makes the clickable
+ * area span full width, while text-align center keeps label balanced.
+ */
 .pricing-card__cta {
   display: block;
   text-align: center;

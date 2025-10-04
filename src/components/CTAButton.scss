@@ -1,5 +1,18 @@
+/*
+ * CTAButton.scss
+ *
+ * PRIMARY CALL-TO-ACTION BUTTON
+ * Reuses design tokens so button styling stays consistent across the app.
+ * Keeps the block simple because variants are handled via modifier classes
+ * in JSX if needed.
+ */
 @import '../styles/variables';
 
+/*
+ * BASE BUTTON STYLES
+ * Inline-flex centers any icon + label horizontally. Gap variable keeps
+ * spacing aligned with the global 8px scale.
+ */
 .cta-button {
   display: inline-flex;
   align-items: center;
@@ -17,6 +30,9 @@
   transition: background $transition-fast;
   white-space: nowrap;
 
+  // INTERACTION STATES
+  // Hover/focus/disabled handled in place for clarity. Using brand colors and
+  // visible focus ring meet baseline accessibility guidelines.
   &:hover {
     background: $primary-hover;
     text-decoration: none;

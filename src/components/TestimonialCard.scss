@@ -1,5 +1,17 @@
+/*
+ * TestimonialCard.scss
+ *
+ * SMALL CONTENT CARD
+ * Pulls in shared variables to keep spacing and colors on-brand. Layout uses
+ * flexbox to position avatar + quote side-by-side following BEM structure.
+ */
 @import '../styles/variables';
 
+/*
+ * CARD WRAPPER
+ * Background + border/shadow match other cards (`PricingCard`, `SellForm`) so
+ * testimonials feel part of the same component family.
+ */
 .testimonial-card {
   background: $card-bg;
   padding: $gap-md;
@@ -8,12 +20,22 @@
   border: 1px solid $border;
 }
 
+/*
+ * INNER LAYOUT
+ * Flex row with gap aligns avatar on left and content on right. `align-items:
+ * flex-start` keeps text top-aligned even if quote spans multiple lines.
+ */
 .testimonial-card__inner {
   display: flex;
   gap: $gap-sm;
   align-items: flex-start;
 }
 
+/*
+ * AVATAR HOLDER
+ * Fixed circular container sized at 48px. `min-width` ensures it doesn't shrink
+ * when layout compresses. `overflow: hidden` supports real images.
+ */
 .testimonial-card__photo {
   width: 48px;
   height: 48px;
@@ -31,6 +53,11 @@
   color: $muted;
 }
 
+/*
+ * TEXT CONTENT
+ * Flex column stacks name + quote with a small gap. `flex: 1` lets the text
+ * take remaining horizontal space while avatar maintains fixed width.
+ */
 .testimonial-card__content {
   flex: 1;
   display: flex;

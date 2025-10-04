@@ -1,5 +1,18 @@
+/*
+ * SellForm.scss
+ *
+ * FORM LAYOUT AND STATE STYLING
+ * Imports shared variables for color/spacing consistency, then styles the
+ * lead capture form using BEM naming. Highlights how focus/validation states
+ * are handled and how success/error messaging is presented.
+ */
 @import '../styles/variables';
 
+/*
+ * FORM CARD CONTAINER
+ * Card treatment (background, border, shadow) matches other surfaces to keep
+ * visual hierarchy consistent across the app.
+ */
 .sell-form {
   background: $card-bg;
   padding: $gap-md;
@@ -8,6 +21,11 @@
   border: 1px solid $border;
 }
 
+/*
+ * HEADLINE + DESCRIPTION
+ * Establishes form context. Margin shorthand `0 0 $gap-xs 0` removes top/side
+ * spacing while adding a controlled gap below the heading.
+ */
 .sell-form__heading {
   font-size: $font-size-xl;
   font-weight: 700;
@@ -21,6 +39,11 @@
   margin: 0 0 $gap-md 0;
 }
 
+/*
+ * ACCESSIBLE LIVE REGION
+ * Visually hidden element that screen readers can announce when submission
+ * status changes (`position: absolute` + clipping keeps it off-screen).
+ */
 .sell-form__status {
   position: absolute;
   width: 1px;
@@ -30,6 +53,11 @@
   white-space: nowrap;
 }
 
+/*
+ * SUCCESS STATE BANNER
+ * Uses lightened variations of `$success` to create a non-intrusive message box
+ * that still aligns with brand colors.
+ */
 .sell-form__success {
   padding: $gap-md;
   background: lighten($success, 50%);
@@ -50,6 +78,11 @@
   color: darken($success, 15%);
 }
 
+/*
+ * FORM WRAPPER & FIELD GROUPS
+ * Flex column with gaps ensures even spacing between inputs without relying
+ * on individual margins. Nested field class stacks labels/input/error neatly.
+ */
 .sell-form__form {
   margin-top: $gap-md;
   display: flex;
@@ -63,6 +96,12 @@
   gap: $gap-xs;
 }
 
+/*
+ * LABELS + INPUTS
+ * Inputs share styles via comma-separated selector. `font-family: inherit`
+ * keeps typography consistent with surrounding text. Focus ring uses
+ * translucent brand color for accessibility.
+ */
 .sell-form__label {
   font-size: $font-size-sm;
   font-weight: 600;
@@ -86,6 +125,11 @@
   }
 }
 
+/*
+ * ERROR STATE
+ * Modifier class `--error` overrides border color and focus glow to use the
+ * error palette, giving immediate feedback on invalid fields.
+ */
 .sell-form__input--error {
   border-color: $error;
 
@@ -99,6 +143,12 @@
   resize: vertical;
 }
 
+/*
+ * ERROR MESSAGING
+ * Small caption-style text sits beneath the field. Separate block (`__error`)
+ * from alert panel (`__error-message`) allows inline warnings and global form
+ * errors simultaneously.
+ */
 .sell-form__error {
   font-size: $font-size-xs;
   color: $error;
@@ -113,6 +163,11 @@
   border-radius: $radius-sm;
 }
 
+/*
+ * ACTIONS + SUBMIT BUTTON
+ * Inline-flex lets icon + text sit horizontally. Loading modifier disables
+ * pointer events and dims button to indicate processing state.
+ */
 .sell-form__actions {
   margin-top: $gap-xs;
 }

@@ -1,10 +1,29 @@
+/*
+ * Hero.scss
+ *
+ * HERO SECTION LAYOUT
+ * Imports shared design tokens, then styles the top-of-page marketing hero.
+ * Uses CSS Grid for two-column layout on larger screens and stacks content on
+ * mobile. Follows BEM naming (`hero__heading`, `hero__media`, etc.).
+ */
 @import '../styles/variables';
 
+/*
+ * HERO WRAPPER
+ * Gradient backdrop creates subtle depth. Vertical padding gives breathing
+ * room above/below to make the hero feel prominent.
+ */
 .hero {
   background: linear-gradient(to right, $card-bg, lighten($bg, 2%));
   padding: $gap-lg 0;
 }
 
+/*
+ * CONTENT GRID
+ * Grid defaults to single column for mobile. Tablet breakpoint splits into
+ * two equal columns (content + media). `align-items: center` vertically
+ * centers both columns when heights differ.
+ */
 .hero__inner {
   max-width: $max-width;
   margin: 0 auto;
@@ -19,12 +38,22 @@
   }
 }
 
+/*
+ * TEXT COLUMN
+ * Flex column stack keeps heading, subheading, CTAs, and trust strip evenly
+ * spaced without manual margins.
+ */
 .hero__content {
   display: flex;
   flex-direction: column;
   gap: $gap-md;
 }
 
+/*
+ * HEADLINE TYPOGRAPHY
+ * Large font size and heavy weight establish hierarchy. Tablet breakpoint
+ * scales up for wider screens. Tight line-height keeps multi-line titles tidy.
+ */
 .hero__heading {
   font-size: $font-size-2xl;
   font-weight: 800;
@@ -37,6 +66,11 @@
   }
 }
 
+/*
+ * BODY COPY
+ * Slightly muted color reduces visual competition with heading. `max-width`
+ * limits line length for readability.
+ */
 .hero__subheading {
   font-size: $font-size-base;
   color: $muted;
@@ -45,12 +79,22 @@
   margin: 0;
 }
 
+/*
+ * PRIMARY + SECONDARY CTAS
+ * Flex wrap lets buttons stack on small screens while keeping inline spacing
+ * on larger screens.
+ */
 .hero__cta-group {
   display: flex;
   flex-wrap: wrap;
   gap: $gap-sm;
 }
 
+/*
+ * SECONDARY CTA BUTTON
+ * Inline-flex aligns optional icon + text. Hover state uses subtle background
+ * and border color shift for feedback.
+ */
 .hero__secondary-cta {
   display: inline-flex;
   align-items: center;
@@ -68,6 +112,11 @@
   }
 }
 
+/*
+ * TRUST STRIP
+ * Displays credibility signals (stats/logos). Wrapping support keeps items on
+ * multiple lines for narrow screens while maintaining spacing.
+ */
 .hero__trust-strip {
   display: flex;
   align-items: center;
@@ -90,6 +139,11 @@
   font-weight: 600;
 }
 
+/*
+ * MEDIA COLUMN
+ * Flex centers the image/placeholder. Dedicated `hero__media-img` handles real
+ * image dimensions while placeholder preserves aspect ratio before image loads.
+ */
 .hero__media {
   display: flex;
   justify-content: center;
@@ -115,6 +169,10 @@
   }
 }
 
+/*
+ * PLACEHOLDER TEXT
+ * Muted tone and small size keep optional placeholder copy subtle.
+ */
 .hero__media-text {
   color: $muted;
   font-size: $font-size-sm;

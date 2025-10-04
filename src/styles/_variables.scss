@@ -1,0 +1,49 @@
+// _variables.scss
+// Shared design tokens used across all components
+
+// Layout
+$max-width: 1100px;
+$container-padding: 16px;
+
+// Colors
+$bg: #f7fafc;
+$text: #1a202c;
+$muted: #6b7280;
+$primary: #2563eb;
+$primary-hover: #1e40af;
+$card-bg: #ffffff;
+$border: #e5e7eb;
+$error: #dc2626;
+$success: #16a34a;
+
+// Spacing
+$gap-xs: 8px;
+$gap-sm: 12px;
+$gap-md: 20px;
+$gap-lg: 32px;
+
+// Border radius
+$radius: 8px;
+$radius-sm: 6px;
+
+// Typography
+$font-size-xs: 13px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-2xl: 28px;
+$font-size-3xl: 32px;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Transitions
+$transition-fast: 150ms ease-in-out;
+$transition-normal: 200ms ease-in-out;
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);

@@ -1,0 +1,11 @@
+$text: #1a202c;
+$bg: #f7fafc;
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: $text;
+  background: $bg;
+  line-height: 1.45;
+}

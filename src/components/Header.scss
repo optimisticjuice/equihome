@@ -1,0 +1,126 @@
+@import '../styles/variables';
+
+.header {
+  background: $card-bg;
+  border-bottom: 1px solid $border;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $gap-md $container-padding;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: $gap-sm;
+}
+
+.header__brand {
+  font-weight: 700;
+  font-size: $font-size-xl;
+  color: $text;
+}
+
+.header__tagline {
+  font-size: $font-size-sm;
+  color: $muted;
+}
+
+.header__nav {
+  display: none;
+  align-items: center;
+  gap: $gap-md;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: flex;
+  }
+}
+
+.header__link {
+  font-size: $font-size-sm;
+  color: $text;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary;
+    text-decoration: underline;
+  }
+}
+
+.header__mobile-toggle {
+  display: block;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.header__menu-button {
+  padding: $gap-xs;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  background: transparent;
+  cursor: pointer;
+  font-size: $font-size-lg;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+.header__mobile-menu {
+  background: $card-bg;
+  border-top: 1px solid $border;
+  animation: slideDown $transition-normal ease-out;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.header__mobile-links {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $gap-md $container-padding;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-md;
+}
+
+.header__mobile-link {
+  font-size: $font-size-sm;
+  color: $text;
+  text-decoration: none;
+  padding: $gap-xs 0;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

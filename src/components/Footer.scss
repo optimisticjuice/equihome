@@ -1,0 +1,57 @@
+@import '../styles/variables';
+
+.footer {
+  background: $card-bg;
+  border-top: 1px solid $border;
+  margin-top: auto;
+}
+
+.footer__inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $gap-md $container-padding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: $gap-md;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.footer__legal {
+  font-size: $font-size-sm;
+  color: $muted;
+  text-align: center;
+
+  @media (min-width: $breakpoint-tablet) {
+    text-align: left;
+  }
+}
+
+.footer__contact {
+  display: flex;
+  align-items: center;
+  gap: $gap-md;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (min-width: $breakpoint-tablet) {
+    justify-content: flex-end;
+  }
+}
+
+.footer__contact-link {
+  font-size: $font-size-sm;
+  color: $text;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary;
+    text-decoration: underline;
+  }
+}

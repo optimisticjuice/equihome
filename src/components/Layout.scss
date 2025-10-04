@@ -1,0 +1,14 @@
+@import '../styles/variables';
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $bg;
+  color: $text;
+}
+
+.layout__main {
+  flex: 1;
+  padding: $gap-md 0;
+}

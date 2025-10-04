@@ -1,0 +1,117 @@
+@import '../styles/variables';
+
+.hero {
+  background: linear-gradient(to right, $card-bg, lighten($bg, 2%));
+  padding: $gap-lg 0;
+}
+
+.hero__inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $gap-lg;
+  align-items: center;
+
+  @media (min-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-md;
+}
+
+.hero__heading {
+  font-size: $font-size-2xl;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  color: $text;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-3xl;
+  }
+}
+
+.hero__subheading {
+  font-size: $font-size-base;
+  color: $muted;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.hero__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap-sm;
+}
+
+.hero__secondary-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px $gap-md;
+  border: 1px solid $border;
+  border-radius: $radius;
+  font-size: $font-size-sm;
+  color: $text;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: $primary;
+  }
+}
+
+.hero__trust-strip {
+  display: flex;
+  align-items: center;
+  gap: $gap-md;
+  flex-wrap: wrap;
+  font-size: $font-size-sm;
+  color: $muted;
+}
+
+.hero__trust-item {
+  white-space: nowrap;
+}
+
+.hero__trust-divider {
+  color: $border;
+}
+
+.hero__trust-highlight {
+  color: $text;
+  font-weight: 600;
+}
+
+.hero__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__media-placeholder {
+  width: 100%;
+  max-width: 450px;
+  height: 280px;
+  background: lighten($muted, 35%);
+  border-radius: $radius;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: $breakpoint-tablet) {
+    height: 320px;
+  }
+}
+
+.hero__media-text {
+  color: $muted;
+  font-size: $font-size-sm;
+}

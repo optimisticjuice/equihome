@@ -1,0 +1,148 @@
+@import '../styles/variables';
+
+.sell-form {
+  background: $card-bg;
+  padding: $gap-md;
+  border-radius: $radius;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border;
+}
+
+.sell-form__heading {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  margin: 0 0 $gap-xs 0;
+  color: $text;
+}
+
+.sell-form__description {
+  font-size: $font-size-sm;
+  color: $muted;
+  margin: 0 0 $gap-md 0;
+}
+
+.sell-form__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+.sell-form__success {
+  padding: $gap-md;
+  background: lighten($success, 50%);
+  border: 1px solid lighten($success, 30%);
+  border-radius: $radius-sm;
+  margin-top: $gap-md;
+}
+
+.sell-form__success-title {
+  display: block;
+  color: darken($success, 10%);
+  font-weight: 600;
+  margin-bottom: $gap-xs;
+}
+
+.sell-form__success-message {
+  font-size: $font-size-sm;
+  color: darken($success, 15%);
+}
+
+.sell-form__form {
+  margin-top: $gap-md;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-md;
+}
+
+.sell-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-xs;
+}
+
+.sell-form__label {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $text;
+}
+
+.sell-form__input,
+.sell-form__textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  font-family: inherit;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+}
+
+.sell-form__input--error {
+  border-color: $error;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($error, 0.1);
+  }
+}
+
+.sell-form__textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.sell-form__error {
+  font-size: $font-size-xs;
+  color: $error;
+  margin-top: 4px;
+}
+
+.sell-form__error-message {
+  font-size: $font-size-sm;
+  color: $error;
+  padding: $gap-sm;
+  background: lighten($error, 45%);
+  border-radius: $radius-sm;
+}
+
+.sell-form__actions {
+  margin-top: $gap-xs;
+}
+
+.sell-form__submit {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-xs;
+  padding: 10px $gap-md;
+  background: $primary;
+  color: white;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: $primary-hover;
+  }
+
+  &:focus {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+.sell-form__submit--loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}

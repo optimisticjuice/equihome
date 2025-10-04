@@ -1,11 +1,64 @@
+/*
+ * index.scss
+ * 
+ * GLOBAL BASE STYLES
+ * This file contains fundamental CSS resets and global styles applied to the entire app.
+ * It's imported once in the main entry point and affects all pages/components.
+ * 
+ * SCOPE: These styles apply to ALL elements, so changes here have wide-reaching effects.
+ */
+
+// Local color variables for this file (duplicated from _variables.scss for simplicity)
+// In a larger app, you'd import _variables.scss instead
 $text: #1a202c;
 $bg: #f7fafc;
 
-* { box-sizing: border-box; }
+/*
+ * UNIVERSAL BOX-SIZING RESET
+ * By default, CSS uses content-box: width/height only include content, not padding/border
+ * border-box is more intuitive: width/height include padding and border
+ * 
+ * Example without border-box:
+ *   width: 200px + padding: 20px = actual width 240px (unexpected!)
+ * 
+ * With border-box:
+ *   width: 200px + padding: 20px = actual width stays 200px (padding goes inside)
+ * 
+ * The * selector targets EVERY element - this is one of the few acceptable uses
+ */
+* { 
+  box-sizing: border-box; 
+}
+
+/*
+ * BODY ELEMENT - THE PAGE ROOT
+ * All visible content is inside <body>, so this sets app-wide defaults
+ */
 body {
+  // Remove default browser margin (8px in most browsers)
+  // This lets us control all spacing intentionally
   margin: 0;
+  
+  // FONT STACK: Modern, cross-platform typeface selection
+  // Browsers try fonts left-to-right until one is found
+  // - Inter: Modern, clean sans-serif (if loaded via @font-face or CDN)
+  // - system-ui: Uses the OS's system font (San Francisco on Mac, Segoe on Windows)
+  // - -apple-system: Older iOS/macOS fallback
+  // - "Segoe UI": Windows system font
+  // - Roboto: Android system font
+  // - "Helvetica Neue": Older Mac fallback
+  // - Arial: Universal fallback - available on all systems
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  
+  // Base text color - applies to all text unless overridden
   color: $text;
+  
+  // Page background color
   background: $bg;
+  
+  // LINE-HEIGHT controls vertical spacing between lines of text
+  // 1.45 = 145% of font size (e.g., 16px font = 23.2px line height)
+  // This creates comfortable reading without lines being too cramped or too loose
+  // Default browser line-height is usually ~1.2, which is too tight for body text
   line-height: 1.45;
 }

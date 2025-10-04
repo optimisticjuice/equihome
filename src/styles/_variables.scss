@@ -1,49 +1,116 @@
-// _variables.scss
-// Shared design tokens used across all components
+/*
+ * _variables.scss
+ * 
+ * DESIGN SYSTEM FOUNDATION
+ * This file contains all shared design tokens (variables) used across the entire application.
+ * By centralizing these values, we ensure consistency and make global design changes easy.
+ * 
+ * SASS VARIABLES ($variable-name):
+ * - Variables are reusable values that can be referenced throughout SCSS files
+ * - They're compiled at build time (unlike CSS custom properties which work at runtime)
+ * - Import this file in any component SCSS: @import '../styles/variables';
+ * - The underscore prefix (_variables.scss) tells SASS this is a "partial" file to be imported
+ * 
+ * WHY USE VARIABLES:
+ * 1. Single source of truth - change $primary once, updates everywhere
+ * 2. Semantic naming - $primary is clearer than #2563eb
+ * 3. Calculations - can do math with variables (e.g., $gap-md * 2)
+ * 4. Maintainability - easier to rebrand or adjust spacing scale
+ */
 
-// Layout
+// ============================================================================
+// LAYOUT CONSTRAINTS
+// ============================================================================
+// Maximum width for content containers - prevents extremely wide text on large screens
+// This creates a centered column that's comfortable to read
 $max-width: 1100px;
+
+// Default horizontal padding for containers on mobile/tablet
+// This ensures content doesn't touch screen edges
 $container-padding: 16px;
 
-// Colors
+// ============================================================================
+// COLOR PALETTE
+// ============================================================================
+// Background color for the page body - soft gray for reduced eye strain
 $bg: #f7fafc;
+
+// Primary text color - near-black for readability without harsh contrast
 $text: #1a202c;
+
+// Muted/secondary text - used for less important information
 $muted: #6b7280;
+
+// Primary brand color - used for CTAs, links, active states
 $primary: #2563eb;
+
+// Darker shade for hover states - provides visual feedback on interaction
 $primary-hover: #1e40af;
+
+// Card background - pure white to stand out from page background
 $card-bg: #ffffff;
+
+// Border color - subtle gray for dividing sections without harsh lines
 $border: #e5e7eb;
+
+// Error/validation color - standard red for warnings and errors
 $error: #dc2626;
+
+// Success color - green for positive feedback (form submissions, etc.)
 $success: #16a34a;
 
-// Spacing
-$gap-xs: 8px;
-$gap-sm: 12px;
-$gap-md: 20px;
-$gap-lg: 32px;
+// ============================================================================
+// SPACING SCALE
+// ============================================================================
+// Consistent spacing creates visual rhythm and makes layouts feel cohesive
+// Using a scale (8px base) makes spacing decisions easier and more predictable
+$gap-xs: 8px;   // Tight spacing (between icon and text, small gaps)
+$gap-sm: 12px;  // Small spacing (between form fields, card elements)
+$gap-md: 20px;  // Medium spacing (between sections, card padding)
+$gap-lg: 32px;  // Large spacing (between major page sections)
 
-// Border radius
-$radius: 8px;
-$radius-sm: 6px;
+// ============================================================================
+// BORDER RADIUS
+// ============================================================================
+// Rounded corners soften the UI - consistent radius values maintain visual harmony
+$radius: 8px;     // Standard radius for cards, buttons, large elements
+$radius-sm: 6px;  // Smaller radius for form inputs, smaller components
 
-// Typography
-$font-size-xs: 13px;
-$font-size-sm: 14px;
-$font-size-base: 16px;
-$font-size-lg: 18px;
-$font-size-xl: 24px;
-$font-size-2xl: 28px;
-$font-size-3xl: 32px;
+// ============================================================================
+// TYPOGRAPHY SCALE
+// ============================================================================
+// Type scale creates hierarchy - larger sizes = more important content
+// Using a consistent scale (not random sizes) creates visual order
+$font-size-xs: 13px;   // Very small text (captions, metadata)
+$font-size-sm: 14px;   // Small text (body copy, links, labels)
+$font-size-base: 16px; // Base text size - browser default, most readable
+$font-size-lg: 18px;   // Slightly larger (subheadings, emphasis)
+$font-size-xl: 24px;   // Section headings
+$font-size-2xl: 28px;  // Page headings
+$font-size-3xl: 32px;  // Hero headings, main titles
 
-// Breakpoints
-$breakpoint-mobile: 480px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+// ============================================================================
+// RESPONSIVE BREAKPOINTS
+// ============================================================================
+// Define screen widths where layout changes occur
+// These are used in @media queries to create responsive designs
+// Mobile-first approach: start with mobile styles, add complexity at larger sizes
+$breakpoint-mobile: 480px;   // Large phones in landscape
+$breakpoint-tablet: 768px;   // Tablets and small laptops
+$breakpoint-desktop: 1024px; // Desktop screens
 
-// Transitions
-$transition-fast: 150ms ease-in-out;
-$transition-normal: 200ms ease-in-out;
+// ============================================================================
+// TRANSITIONS
+// ============================================================================
+// Consistent timing makes interactions feel smooth and professional
+// ease-in-out creates natural-feeling motion (starts slow, speeds up, slows down)
+$transition-fast: 150ms ease-in-out;     // Quick interactions (hover states)
+$transition-normal: 200ms ease-in-out;   // Standard transitions (most animations)
 
-// Shadows
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+// ============================================================================
+// SHADOWS
+// ============================================================================
+// Subtle shadows create depth and hierarchy in flat design
+// rgba(0,0,0,0.05) = black at 5% opacity - very subtle
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);  // Subtle lift (cards, inputs)
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);   // More pronounced (hover states, modals)

@@ -42,7 +42,7 @@ export default function Hero() {
         <div className="hero__media">
           <div className="hero__media-placeholder">
             {/* Placeholder box — replace with <img src="/images/hero.jpg" alt="..." /> */}
-            <span className="hero__media-text">[Hero image]</span>
+            <img src="/images/heroimg.png" className="hero__media-img" alt="..." />
           </div>
         </div>
       </div>

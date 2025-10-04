@@ -1,126 +1,270 @@
+/*
+ * Header.scss
+ * 
+ * STICKY NAVIGATION WITH RESPONSIVE MOBILE MENU
+ * Demonstrates advanced CSS concepts:
+ * - Sticky positioning for persistent navigation
+ * - Mobile-first responsive design with media queries
+ * - CSS animations for smooth mobile menu transitions
+ * - SCSS nesting for cleaner, more maintainable code
+ * - Z-index layering for proper stacking context
+ * 
+ * SCSS FEATURES USED:
+ * - Variables ($card-bg, $breakpoint-tablet, etc.) for consistency
+ * - Nesting (&:hover, &:focus) to keep related styles together
+ * - @media queries for responsive breakpoints
+ * - @keyframes for custom animations
+ */
+
 @import '../styles/variables';
 
+/*
+ * HEADER BLOCK - Main navigation container
+ * 
+ * STICKY POSITIONING:
+ * position: sticky combines relative and fixed behavior
+ * - Acts like relative until scrolling reaches 'top: 0' threshold
+ * - Then "sticks" to top like fixed position
+ * - Stays within its parent container (unlike fixed which is viewport-relative)
+ * - Better for accessibility than fixed (doesn't break tab order)
+ * 
+ * Z-INDEX STACKING:
+ * z-index: 100 ensures header stays above page content when sticky
+ * Without this, page elements could slide over the header when scrolling
+ * Higher z-index = closer to user, lower = further back
+ */
 .header {
-  background: $card-bg;
-  border-bottom: 1px solid $border;
-  box-shadow: $shadow-sm;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background: $card-bg;                  // White background stands out from page
+  border-bottom: 1px solid $border;      // Subtle separation from content
+  box-shadow: $shadow-sm;                // Slight elevation effect
+  position: sticky;                       // Sticks to top when scrolling
+  top: 0;                                 // Stick when top edge reaches viewport top
+  z-index: 100;                           // Layer above content but below modals (usually 1000+)
 }
 
+/*
+ * HEADER__INNER - Centered content container
+ * Uses the "centered container" pattern common in responsive design
+ */
 .header__inner {
-  max-width: $max-width;
-  margin: 0 auto;
-  padding: $gap-md $container-padding;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  max-width: $max-width;               // Prevents content from being too wide on large screens
+  margin: 0 auto;                      // Centers the container horizontally
+  padding: $gap-md $container-padding; // Vertical and horizontal padding
+  display: flex;                       // Flexbox for horizontal layout
+  align-items: center;                 // Vertically centers logo, nav, and menu button
+  justify-content: space-between;      // Pushes logo left, nav/button right
 }
 
+// Simple logo container
 .header__logo {
   display: flex;
   align-items: center;
-  gap: $gap-sm;
+  gap: $gap-sm;                        // Space between brand name and tagline
 }
 
 .header__brand {
-  font-weight: 700;
-  font-size: $font-size-xl;
+  font-weight: 700;                    // Bold brand name for prominence
+  font-size: $font-size-xl;            // Larger than body text (24px default)
   color: $text;
+  
+  // RESPONSIVE FONT SIZING
+  // Mobile: Half the desktop size (24px → 12px)
+  @media (max-width: $breakpoint-tablet) {
+    font-weight: 500;
+    font-size: calc($font-size-xl / 1.5);  // 12px on mobile
+  }
+  
+  // Very small screens: Quarter of desktop size (24px → 12px → 6px)
+  @media (max-width: 150px) {
+    font-weight: 300;
+    font-size: calc($font-size-xl / 4);  // 6px on very small screens
+  }
 }
 
 .header__tagline {
-  font-size: $font-size-sm;
-  color: $muted;
+  font-size: $font-size-sm;            // Smaller, supporting text
+  color: $muted;                       // Deemphasized color
 }
 
+/*
+ * HEADER__NAV - Desktop Navigation
+ * 
+ * MOBILE-FIRST RESPONSIVE DESIGN:
+ * Base styles are for mobile (display: none hides nav)
+ * @media query adds desktop styles at larger screens
+ * 
+ * WHY THIS APPROACH:
+ * - Mobile is default (most users, simplest layout)
+ * - Progressive enhancement: add complexity for larger screens
+ * - Easier to maintain than desktop-first (doesn't require overriding complex styles)
+ * 
+ * MEDIA QUERY SYNTAX:
+ * @media (min-width: $breakpoint-tablet) means "screens 768px and wider"
+ * Everything inside {} only applies when condition is true
+ */
 .header__nav {
-  display: none;
-  align-items: center;
-  gap: $gap-md;
+  display: none;                       // Hidden on mobile by default
+  align-items: center;                 // Pre-set for when it becomes visible
+  gap: $gap-md;                        // Space between nav items
 
+  /*
+   * RESPONSIVE BREAKPOINT - Tablet and up
+   * At 768px viewport width, show the nav
+   * The mobile menu button is hidden at this size (see .header__mobile-toggle)
+   */
   @media (min-width: $breakpoint-tablet) {
-    display: flex;
+    display: flex;                     // Make nav visible, use flexbox layout
   }
 }
 
+/*
+ * HEADER__LINK - Navigation link styling
+ * 
+ * SCSS NESTING WITH &:
+ * &:hover is SCSS syntax that compiles to .header__link:hover
+ * The & represents the parent selector, keeping related styles together
+ * 
+ * CSS TRANSITIONS:
+ * transition property creates smooth animated changes between states
+ * Format: property duration timing-function
+ * Here: color changes over 150ms with ease-in-out curve
+ */
 .header__link {
   font-size: $font-size-sm;
   color: $text;
-  text-decoration: none;
-  transition: color $transition-fast;
+  text-decoration: none;               // Remove default underline
+  transition: color $transition-fast;  // Smooth color change on hover
 
+  /* PSEUDO-CLASS SELECTOR: hover state */
+  /* SCSS nesting: & gets replaced with .header__link during compilation */
   &:hover {
-    color: $primary;
-    text-decoration: underline;
+    color: $primary;                   // Change to brand color on hover
+    text-decoration: underline;         // Add underline for clarity
   }
 }
 
+/*
+ * HEADER__MOBILE-TOGGLE - Container for hamburger button
+ * Opposite behavior of desktop nav: visible mobile, hidden desktop
+ */
 .header__mobile-toggle {
-  display: block;
+  display: block;                      // Visible on mobile
 
   @media (min-width: $breakpoint-tablet) {
-    display: none;
+    display: none;                     // Hidden on desktop (where desktop nav shows)
   }
 }
 
+/*
+ * HEADER__MENU-BUTTON - The hamburger/close button
+ * 
+ * ACCESSIBILITY CONSIDERATIONS:
+ * - cursor: pointer shows it's clickable
+ * - :focus outline for keyboard navigation
+ * - aria-label in JSX provides screen reader context
+ * 
+ * RGBA COLOR:
+ * rgba(0, 0, 0, 0.05) = black at 5% opacity
+ * Creates subtle hover effect without defining specific gray color
+ */
 .header__menu-button {
   padding: $gap-xs;
   border: 1px solid $border;
   border-radius: $radius-sm;
-  background: transparent;
-  cursor: pointer;
-  font-size: $font-size-lg;
+  background: transparent;             // No background by default
+  cursor: pointer;                     // Hand cursor indicates clickability
+  font-size: $font-size-lg;            // Larger icons for tap targets
   transition: background $transition-fast;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.05);   // Subtle gray on hover
   }
 
+  /*
+   * FOCUS STATE - Keyboard accessibility
+   * outline provides visual indicator when tabbing through page
+   * outline-offset: 2px creates space between element and outline
+   */
   &:focus {
-    outline: 2px solid $primary;
-    outline-offset: 2px;
+    outline: 2px solid $primary;       // Visible focus ring
+    outline-offset: 2px;                // Space between button and ring
   }
 }
 
+/*
+ * HEADER__MOBILE-MENU - Expandable mobile navigation panel
+ * 
+ * CSS ANIMATIONS:
+ * animation property applies pre-defined keyframe animation
+ * Format: animation-name duration timing-function
+ * slideDown is defined with @keyframes below
+ * 
+ * CONDITIONAL RENDERING:
+ * This element only exists in DOM when mobile menu is open (React controls this)
+ * When it appears, animation plays automatically
+ */
 .header__mobile-menu {
   background: $card-bg;
   border-top: 1px solid $border;
-  animation: slideDown $transition-normal ease-out;
+  animation: slideDown $transition-normal ease-out;  // Play animation on mount
 
   @media (min-width: $breakpoint-tablet) {
-    display: none;
+    display: none;                     // Never show on desktop
   }
 }
 
+// Container for mobile navigation links - similar to header__inner
 .header__mobile-links {
   max-width: $max-width;
   margin: 0 auto;
   padding: $gap-md $container-padding;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;              // Stack links vertically
   gap: $gap-md;
 }
 
+// Mobile link styling - similar to desktop but with vertical padding
 .header__mobile-link {
   font-size: $font-size-sm;
   color: $text;
   text-decoration: none;
-  padding: $gap-xs 0;
+  padding: $gap-xs 0;                  // Vertical padding for larger tap target
 
   &:hover {
     color: $primary;
   }
 }
 
+/*
+ * CSS ANIMATION DEFINITION
+ * 
+ * @KEYFRAMES:
+ * Defines custom animation sequences
+ * Specify styles at different points in the animation timeline
+ * 
+ * SYNTAX:
+ * - from: starting state (0% of animation)
+ * - to: ending state (100% of animation)
+ * - Can also use percentages: 0%, 25%, 50%, 75%, 100%
+ * 
+ * TRANSFORM PROPERTY:
+ * transform: translateY() moves element vertically
+ * - translateY(-10px): 10px up from normal position
+ * - translateY(0): normal position
+ * 
+ * WHY THIS ANIMATION WORKS:
+ * 1. Menu starts invisible (opacity: 0) and shifted up (translateY: -10px)
+ * 2. Over 200ms, it fades in and slides down to normal position
+ * 3. ease-out timing: starts fast, slows at end (feels natural)
+ * 4. Result: smooth dropdown effect instead of instant appearance
+ */
 @keyframes slideDown {
   from {
-    opacity: 0;
-    transform: translateY(-10px);
+    opacity: 0;                        // Start invisible
+    transform: translateY(-10px);       // Start 10px above final position
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;                        // End fully visible
+    transform: translateY(0);           // End at normal position
   }
 }

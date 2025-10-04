@@ -95,7 +95,11 @@
   justify-content: center;
   align-items: center;
 }
-
+.hero__media-img {
+   width: 100%;
+   max-width: 450px;
+   height: 100%;
+}
 .hero__media-placeholder {
   width: 100%;
   max-width: 450px;

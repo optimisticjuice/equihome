@@ -1,14 +1,63 @@
+/*
+ * Layout.scss
+ * 
+ * STICKY FOOTER PATTERN WITH FLEXBOX
+ * This creates a layout where the footer always stays at the bottom,
+ * even when page content is short (doesn't fill the viewport).
+ * 
+ * HOW IT WORKS:
+ * 1. .layout is a flex container with flex-direction: column (stacks children vertically)
+ * 2. min-height: 100vh ensures it's at least as tall as the viewport
+ * 3. .layout__main has flex: 1, which means "grow to fill available space"
+ * 4. Header and Footer have natural heights, main expands to fill the rest
+ * 
+ * Result: Footer is always at viewport bottom, even on short pages
+ */
+
+// Import shared design tokens (colors, spacing, etc.)
 @import '../styles/variables';
 
+/*
+ * LAYOUT BLOCK - The page root container
+ * BEM Block: "layout" is the component name
+ */
 .layout {
+  // min-height: 100vh ensures the layout is at least full viewport height
+  // vh = viewport height unit, 100vh = 100% of browser window height
+  // This prevents the footer from floating in the middle on short pages
   min-height: 100vh;
+  
+  // FLEXBOX: Modern layout system for one-dimensional layouts (row or column)
+  // display: flex makes this element a flex container
+  // All direct children become flex items with special layout properties
   display: flex;
+  
+  // flex-direction: column stacks children vertically (Header, Main, Footer)
+  // Default is 'row' (horizontal), but we want vertical stacking
   flex-direction: column;
+  
+  // Background color from design system variables
   background: $bg;
+  
+  // Default text color (can be overridden by child elements)
   color: $text;
 }
 
+/*
+ * LAYOUT__MAIN - The content area that grows
+ * BEM Element: "layout__main" belongs to the "layout" block
+ */
 .layout__main {
+  // flex: 1 is shorthand for:
+  //   flex-grow: 1   (grow to fill available space)
+  //   flex-shrink: 1 (can shrink if needed)
+  //   flex-basis: 0  (start with 0 size, then grow)
+  // 
+  // This makes the main content area expand to fill all space between header and footer
+  // If content is short, main grows. If content is long, it uses natural height.
   flex: 1;
-  padding: $gap-md 0;
+  
+  // Vertical padding - creates space above and below page content
+  // Horizontal padding is handled by .container classes in App.scss
+  padding: $gap-md 0; // 20px top and bottom, 0 left and right
 }
